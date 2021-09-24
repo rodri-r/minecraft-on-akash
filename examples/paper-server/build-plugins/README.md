@@ -1,4 +1,4 @@
-This allows you to deploy a Minecraft paper server with plugins on Akash
+### This allows you to deploy a Minecraft paper server with plugins on Akash
 
 - Download Bukkit/Spigot plugin jars, such as EssentialsX,  and place them in the plugins directory. 
 - Build your Docker image (Inside your directory, run - docker build -t name .)
