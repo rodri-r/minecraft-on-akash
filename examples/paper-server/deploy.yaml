@@ -19,6 +19,8 @@ services:
       - EULA=TRUE
       - VERSION=LATEST
       - SERVER_NAME=YourServerName
+      - MOTD="Message of the Day / If you take this out, the default message will appear"
+      - DIFFICULTY=normal
       - MEMORY=5G
       - MAX_PLAYERS=12
       - TYPE=PAPER
