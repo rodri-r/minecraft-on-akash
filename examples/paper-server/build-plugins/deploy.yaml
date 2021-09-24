@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   web:
-    image: moonbys/minecraft:master
+    image: moonbys/minecraft:paperp
     expose:
       - port: 25565
         proto: tcp
