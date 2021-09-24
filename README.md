@@ -34,5 +34,11 @@ You can also create your own Minecraft Docker Image with a custom Dockerfile or
 You can use my image by pulling moonbys/minecraft:master
 
 ***
+## Deploy Steps
 
-### Take a look at the example files, pick one, edit, deploy and have fun!!!
+- Create your own Minecraft Docker Image or use one from the examples folder
+- Create your own deploy.yaml file or use one from the examples folder (change the Docker Image and settings to your needs)
+- Use your selected Akash deploy method to send your selected deploy.yaml
+- Log in to your Minecraft server and have fun
+
+
