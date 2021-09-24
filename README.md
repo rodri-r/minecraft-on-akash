@@ -34,6 +34,7 @@ You can also create your own Minecraft Docker Image with a custom Dockerfile or
 You can use my image by pulling moonbys/minecraft:master
 
 ***
+
 ## Deploy Steps
 
 - Create your own Minecraft Docker Image or use one from the examples folder
@@ -41,4 +42,8 @@ You can use my image by pulling moonbys/minecraft:master
 - Use your selected Akash deploy method to send your selected deploy.yaml
 - Log in to your Minecraft server and have fun
 
+***
 
+### Notes
+
+- All of the deploy.yaml files in the examples folder include RCON setup, so that you can interact with your server (You will need mcrcon https://github.com/Tiiffi/mcrcon) You can also delete the RCON lines and port, if you do not plan to use this. 
