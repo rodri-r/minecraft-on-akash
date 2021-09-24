@@ -47,3 +47,4 @@ You can use my image by pulling moonbys/minecraft:master
 ### Notes
 
 - All of the deploy.yaml files in the examples folder include RCON setup, so that you can interact with your server (You will need mcrcon https://github.com/Tiiffi/mcrcon) You can also delete the RCON lines and port, if you do not plan to use this. 
+- I will be adding more examples soon. 
