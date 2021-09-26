@@ -127,7 +127,9 @@ Run the forge installer file with the --installServer flag. (change the forge ve
 java -jar forge-1.12.2-14.23.5.2855-installer.jar --installServer
 ```
 
-After the above command is complete, you will have a new file in your directory. In our case forge-1.12.2-14.23.5.2855.jar
+After the above command is complete, you will have a new file in your directory. In our case forge-1.12.2-14.23.5.2855.jar 
+
+You can also go ahead and delete de installer.jar and installer.jar.log files
 
 Now run the following command inside your minecraft directory (Adjust the JVM options to your needs and server.)
 
@@ -137,11 +139,11 @@ java -Xms2G -Xmx5G -jar forge-1.12.2-14.23.5.2855.jar nogui
 
 #### JVM Recommendations
 
-#### The best memory setting for you to use depends a lot on whether you are running 32-bit or 64-bit Java. As a good rule of thumb, your -Xmx setting needs to be:
+The best memory setting for you to use depends a lot on whether you are running 32-bit or 64-bit Java. As a good rule of thumb, your -Xmx setting needs to be:
 
-#### 64-bit Java: 1G for vanilla Minecraft + another 1G for every 25 mods installed: so 2G or 3G should be OK for small servers and a good number of mods, very large modpacks could require 5G or 6G.
+- 64-bit Java: 1G for vanilla Minecraft + another 1G for every 25 mods installed: so 2G or 3G should be OK for small servers and a good number of mods, very large modpacks could require 5G or 6G.
 
-#### 32-bit Java: 768M for vanilla Minecraft + another 512M for every 25 mods installed 
+- 32-bit Java: 768M for vanilla Minecraft + another 512M for every 25 mods installed 
 
 ### Accepting the EULA text
 
@@ -160,6 +162,8 @@ eula=true
 ```
 
 ### Copy your mods to the newly created mods folder.
+
+We recommend getting your mods from https://www.curseforge.com/minecraft/modpacks 
 
 ### Edit your server.properties file (If you want to customise your server)
 
