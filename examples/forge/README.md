@@ -216,6 +216,12 @@ cd /opt/minecraft/ && java -Xms2G -Xmx5G -jar /opt/minecraft/forge-1.12.2-14.23.
 chmod +x minecraft.sh
 ```
 
+### Install Screen
+
+```
+apt install screen
+```
+
 ### Add a command to /etc/rc.local to start your Minecraft server everytime the server boots up. 
 
 ```
@@ -228,3 +234,12 @@ nano /etc/rc.local
 screen -dm -S minecraft /opt/scripts/minecraft.sh 
 ```
 
+### To access your console after bootup use the following command or connect via mcrcon
+
+```
+screen -r minecraft
+```
+
+### To exit the screen session use the following command
+
+CTRL AD
