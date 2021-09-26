@@ -243,3 +243,64 @@ screen -r minecraft
 ### To exit the screen session use the following command
 
 CTRL AD
+
+---
+
+## Backing up your Minecraft server
+
+It is very important to backup your server
+
+You can accomplish this with the following commands:
+
+```
+cd /opt
+tar -zcvf minecraft_backup.tar.gz minecraft
+```
+
+You can now copy the created file to another server or to an external storage.
+
+I like to use Filebase.com
+
+## Uploading your backup to Filebase
+
+You will need to install awscli version 1 or 2
+
+I will show you how to install version 2 in Linux
+
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
+```
+
+### Configure your awscli with your Filebase account (You will need your access key and secret key)
+
+```
+aws configure
+```
+
+This will trigger a prompt. Enter your Access Key ID and Secret Access Key. 
+
+You can leave the region and output format blank by simply hitting enter.
+
+After confiugring your awscli with your Filebase account, you will need to create a bucket in your Filebase account. 
+
+You can do this via the console (web dashboard) or by running:
+
+```
+aws --endpoint https://s3.filebase.com s3 mb s3://my-minecraft-backup-bucket
+```
+
+In your backup directory, run:
+
+```
+aws --endpoint https://s3.filebase.com s3 cp minecraft_backup.tar.gz s3://my-minecraft-backup-bucket
+```
+
+Your backup file will be uploaded to your Filebase bucket and you now have a backup of your entire Minecraft server
+
+
+
+
+
+
