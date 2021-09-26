@@ -161,6 +161,22 @@ Change the following line to true and save the file
 eula=true
 ```
 
+### Run the server again to generate your world.
+
+```
+java -Xms2G -Xmx5G -jar forge-1.12.2-14.23.5.2855.jar nogui
+```
+
+### Stop your server and configure your server
+
+```
+Ctrl + c
+```
+
+You now have a Minecraft vanilla server, but to have a Forge modded server you will need to do a few more things. 
+
+You will now have new folders and files inside your minecraft directory
+
 ### Copy your mods to the newly created mods folder.
 
 We recommend getting your mods from https://www.curseforge.com/minecraft/modpacks 
@@ -169,7 +185,7 @@ We recommend getting your mods from https://www.curseforge.com/minecraft/modpack
 
 On a low power system you can lower the view distance. Start with 10 for your modded server, and adjust it downward if you get some lag. If you have plenty of CPU and RAM you can increase it as well. 
 
-### Run the server again to generate your world.
+### Run the server again and enjoy your modded Minecraft server
 
 ```
 java -Xms2G -Xmx5G -jar forge-1.12.2-14.23.5.2855.jar nogui
