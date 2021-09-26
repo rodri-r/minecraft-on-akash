@@ -1,0 +1,51 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: moonbys/moonubu:java8
+    env:
+      - sshport=22000
+      - pubkey=YourPubKeyGoesHere
+    expose:
+      - port: 22000
+        as: 22000
+        to:
+          - global: true
+      - port: 25565
+        proto: tcp
+        to:
+          - global: true
+      - port: 25575
+        proto: tcp
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 6Gi
+        storage:
+          size: 10G
+  placement:
+    dcloud:
+      attributes:
+        datacenter: equinix-metal-ewr1
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        web:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  web:
+    dcloud:
+      profile: web
+      count: 1
