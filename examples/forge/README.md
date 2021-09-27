@@ -129,7 +129,7 @@ java -jar forge-1.12.2-14.23.5.2855-installer.jar --installServer
 
 After the above command is complete, you will have a new file in your directory. In our case forge-1.12.2-14.23.5.2855.jar 
 
-You can also go ahead and delete de installer.jar and installer.jar.log files
+You can also go ahead and delete the installer.jar and installer.jar.log files
 
 Now run the following command inside your minecraft directory (Adjust the JVM options to your needs and server.)
 
@@ -180,6 +180,8 @@ You will now have new folders and files inside your minecraft directory
 ### Copy your mods to the newly created mods folder.
 
 We recommend getting your mods from https://www.curseforge.com/minecraft/modpacks 
+
+Be wary with the mods that you download from other sources. There are many scams out there, but curseforge is known for being safe and trustworty.
 
 ### Edit your server.properties file (If you want to customise your server)
 
@@ -261,7 +263,7 @@ You can now copy the created file to another server or to an external storage.
 
 I like to use Filebase.com
 
-## Uploading your backup to Filebase
+## Uploading your backups to Filebase
 
 You will need to install awscli version 1 or 2
 
@@ -299,8 +301,133 @@ aws --endpoint https://s3.filebase.com s3 cp minecraft_backup.tar.gz s3://my-min
 
 Your backup file will be uploaded to your Filebase bucket and you now have a backup of your entire Minecraft server
 
+---
 
+## Creating Automatic Backups
 
+These instructions will help you to create daily automatic backups of your Minecraft server, so that you don't have to worry about remembering.
 
+This will create a daily backup in your Akash server, it will upload the backup file to your Filebase bucket and it will delete your Akash backup file afterwards
 
+New backups will overwrite old backups in Filebase and you will have a seven day rotational backup of your Minecraft server.
 
+### Create your backup script
+
+```
+cd /opt/scripts
+nano mcbackup.sh
+```
+
+Copy and paste the following script into your nano editor. 
+
+Change the dest= line to point to the folder that you want your backups to be made into.
+
+```
+#!/bin/sh
+####################################
+#
+# Backup minecraft world to a
+# specified folder.
+#
+####################################
+
+# What to backup. Name of minecraft folder in /opt
+backup_files="minecraft"
+
+# Specify which directory to backup to.
+# Make sure you have enough space to hold your backups.
+# Warning: Minecraft worlds can get fairly large so choose your Akash deploy storage accordingly.
+dest="/home/username/minecraftbackups"
+
+# Create backup archive filename.
+day=$(date +%A)
+archive_file="$day-$backup_files-.tar.gz"
+
+# Backup the files using tar.
+cd /opt && tar zcvf $dest/$archive_file $backup_files
+```
+
+Save the file by pressing CTRL-X and entering Y 
+
+Make the file executable
+
+```
+chmod +x mcbackup.sh
+```
+
+Test your script before creating the scheduled task and ensure that your script works 
+
+```
+/opt/scripts/mcbackup.sh
+```
+You should see the backup happening. Once completed, verify that the file was created. It should be in the location that you specified.
+
+### Create your Filebase Sync script
+
+```
+cd /opt/scripts
+nano filebasesync.sh
+```
+
+In your nano editor add the following, save and exit
+
+```
+# Sync minecraftbackups folder with your Minecraft backup Filebase bucket
+aws --endpoint https://s3.filebase.com s3 sync /home/minecraftbackups/ s3://my-minecraft-backup-bucket
+```
+
+Make the file executable
+
+```
+chmod +x filebasesync.sh
+```
+
+### Create your Clean Minecraft Backup Folder script
+
+```
+cd /opt/scripts
+nano clean-mcbackups.sh
+```
+
+In your nano editor add the following, save and exit
+
+```
+# Clean minecraftbackups after syncing to Filebase
+rm -rf /home/minecraftbackups/*
+```
+
+Make the file executable
+
+```
+chmod +x clean-mcbackups.sh
+```
+
+After confirming that your scripts work, create the scheduled tasks to automate the backups.
+
+Install Cron
+
+```
+apt install cron
+``` 
+
+- Create a schedule
+
+- Create a scheduled task with the cron scheduler 
+
+- Make sure that you are running this with the user that you log in to your Akash server or with root
+
+```
+crontab -e
+```
+
+If this is your first time running cron, select your preferred editor (I prefer nano)
+
+Enter these lines at the end of your crontab and then save it.
+
+```
+02 2 * * * /opt/scripts/mcbackup.sh &> /dev/null
+02 3 * * * /opt/scripts/filebasesync.sh
+02 4 * * * /opt/scripts/clean-mcbackups.sh
+``` 
+
+#### Congratulations!! You now have a Forge and modded Minecraft server running on Akash, which automatically backups to Filebase every day. 
