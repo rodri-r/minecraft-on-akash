@@ -8,7 +8,7 @@
 
 ***
 
-### The moonbys/minecraft:paperp Docker image, runs the latest version of Minecraft and it comes with EssentialsX, Towny, Holographic Displays and SlimeFun.
+### The moonbys/minecraft:paperp Docker image, runs the latest version of Minecraft and it comes with EssentialsX, Holographic Displays and SlimeFun.
 
 #### Notes - We will be modifying this image and server soon!
 
