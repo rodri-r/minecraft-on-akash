@@ -425,9 +425,9 @@ If this is your first time running cron, select your preferred editor (I prefer 
 Enter these lines at the end of your crontab and then save it.
 
 ```
-02 2 * * * /opt/scripts/mcbackup.sh &> /dev/null
-02 3 * * * /opt/scripts/filebasesync.sh
-02 4 * * * /opt/scripts/clean-mcbackups.sh
+01 6 * * * sudo /opt/scripts/mcbackup.sh &> /dev/null
+02 7 * * * sudo /opt/scripts/filebasesync.sh
+03 8 * * * sudo /opt/scripts/clean-mcbackups.sh
 ``` 
 
 #### Congratulations!! You now have a Forge and modded Minecraft server running on Akash, which automatically backups to Filebase every day. 
