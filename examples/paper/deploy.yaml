@@ -26,7 +26,8 @@ services:
       - TYPE=PAPER
       - ENABLE_RCON=true
       - RCON_PASSWORD=yoursupersecretpassword
-      - JVM_OPTS=-Xmn1G -Xmx5G
+      - JVM_OPTS=-Xmn2G -Xmx5G
+      - OVERRIDE_SERVER_PROPERTIES=TRUE
 profiles:
   compute:
     web:
