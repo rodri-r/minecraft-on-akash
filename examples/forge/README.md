@@ -218,6 +218,7 @@ cd /opt/minecraft/ && java -Xms2G -Xmx5G -jar /opt/minecraft/forge-1.12.2-14.23.
 chmod +x minecraft.sh
 ```
 
+
 ### Install Screen
 
 ```
@@ -246,6 +247,68 @@ screen -r minecraft
 
 CTRL AD
 
+### Create a script to restart Minecraft
+
+```
+cd opt/scripts
+nano startmc.sh
+```
+
+### Add the following command. This will allow the minecraft server to start in a detached screen session when the server is restarted after backup.
+
+```
+screen -dm -S minecraft /opt/scripts/minecraft.sh
+```
+
+### Save the file and make it executable
+
+```
+chmod +x startmc.sh
+```
+
+### Install MCRcon and create a script for stopping the server
+
+### Install MCRcon
+
+```
+cd /opt/tools
+git clone https://github.com/Tiiffi/mcrcon.git
+cd mcrcon
+make
+make install
+```
+
+You can read more about MCrcon at https://github.com/Tiiffi/mcrcon
+
+### Create a script to stop Minecraft
+ 
+```
+cd /opt/scripts
+nano stopmc.sh
+```
+
+### Copy the following into that file
+
+```
+#!/bin/sh
+####################################
+##
+# Stop Minecraft with MCRcon
+# 
+##
+####################################
+
+mcrcon -H yourserver.com -P your-rconport -p yourpassword -w 10 "say Server is restarting in 10 seconds!" save-all stop
+```
+
+Save the file by pressing CTRL-X and entering Y
+
+### Make the file executable
+
+```
+chmod +x stopmc.sh
+```
+
 ---
 
 ## Backing up your Minecraft server
@@ -255,8 +318,14 @@ It is very important to backup your server
 You can accomplish this with the following commands:
 
 ```
+/opt/scripts/stopmc.sh
 cd /opt
 tar -zcvf minecraft_backup.tar.gz minecraft
+```
+Restart your server
+
+```
+/opt/scripts/startmc.sh
 ```
 
 You can now copy the created file to another server or to an external storage.
@@ -402,12 +471,20 @@ Make the file executable
 chmod +x clean-mcbackups.sh
 ```
 
-After confirming that your scripts work, create the scheduled tasks to automate the backups.
 
-Install Cron
+### After confirming that your scripts work, create the scheduled tasks to automate the backups.
+
+### Install Cron
 
 ```
 apt install cron
+``` 
+
+Make sure that Cron is running 
+
+```
+service cron status
+service cron start
 ``` 
 
 - Create a schedule
@@ -425,9 +502,11 @@ If this is your first time running cron, select your preferred editor (I prefer 
 Enter these lines at the end of your crontab and then save it.
 
 ```
-01 6 * * * sudo /opt/scripts/mcbackup.sh &> /dev/null
-02 7 * * * sudo /opt/scripts/filebasesync.sh
-03 8 * * * sudo /opt/scripts/clean-mcbackups.sh
+01 6 * * * sudo /opt/scripts/stopmc.sh
+02 6 * * * sudo /opt/scripts/mcbackup.sh &> /dev/null
+04 6 * * * sudo /opt/scripts/startmc.sh
+10 6 * * * sudo /opt/scripts/filebasesync.sh
+02 7 * * * sudo /opt/scripts/clean-mcbackups.sh
 ``` 
 
 #### Congratulations!! You now have a Forge and modded Minecraft server running on Akash, which automatically backups to Filebase every day. 
