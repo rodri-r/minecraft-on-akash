@@ -16,8 +16,14 @@ You can currently pick from:
 - Akashlytics Deploy (Desktop App) - https://docs.akash.network/guides/app
 - Akash Command (Cli) - https://docs.akash.network/guides/command
 
-You will also need to create an AKT wallet. You can do this with any of the methods above or by using Keplr wallet. (There is information about this in the Akash Documents too.)
+You will also need to create an AKT wallet. You can do this with any of the methods above or by using Keplr wallet or Cosmostation. (There is information about this in the Akash Documents too.)
 https://docs.akash.network/guides/wallet
+
+I have added some more examples with the newest version of Akash CLI 0.14.0 (https://docs.akash.network/release-notes/v0.14.0). 
+
+This makes it easier to access the Deployment Shell (CLI) and manage your server. It also allows you to copy files from your container to a local instance.
+
+In my examples, I have added automatic backups to Filebase and used MCrcon to manage the server as well.
 
 ***
 

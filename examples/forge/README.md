@@ -16,7 +16,7 @@ Update deploy.yaml with your newly built docker image. ( or keep the prebuilt im
 
 | | |
 --- | --- 
-|akash:|`akash178d5wcg95z2jc5au608a9scshvwy3stwt3cgmq`|
+|akash:|`akash1vpgjmwc77n70n3q9wzq0wdu83ukp4kvzp09ulc`|
 
 ### Buy Coffeeroaster a coffee to keep his work going and for https://github.com/coffeeroaster/akash-ubuntu
 
