@@ -8,21 +8,19 @@ This repository will show you how to deploy different types of Minecraft servers
 
 ### Getting Started
 
-You will need to choose a way to deploy to Akash. They have several deployment guides in their documentation. https://docs.akash.network/
+You will need to choose a way to deploy to Akash. They have several deployment guides in their documentation. https://akash.network/docs/
 
 You can currently pick from:
 
-- Akash Deploy UI (Web App) - https://docs.akash.network/guides/deploy
-- Akashlytics Deploy (Desktop App) - https://docs.akash.network/guides/app
-- Akash Command (Cli) - https://docs.akash.network/guides/command
+- Akash Console (Web App) - https://console.akash.network/
+- Akash Console Instructions - https://akash.network/docs/deployments/akash-console/
+- Akash Command (Cli) - https://akash.network/docs/deployments/akash-cli/overview/
+- Sandbox (Testnet) - https://akash.network/docs/deployments/sandbox/introduction/
+- Sandbox Faucet (Get test tokens) - https://faucet.sandbox-01.aksh.pw/
 
-You will also need to create an AKT wallet. You can do this with any of the methods above or by using Keplr wallet or Cosmostation. (There is information about this in the Akash Documents too.)
-https://docs.akash.network/guides/wallet
-
-I have added some more examples with the newest version of Akash CLI 0.14.0 (https://docs.akash.network/release-notes/v0.14.0). 
-
-This makes it easier to access the Deployment Shell (CLI) and manage your server. It also allows you to copy files from your container to a local instance.
-
+You will also need to create an AKT wallet. You can do this with any of the methods above or by using Keplr wallet, Cosmostation or Leap Wallet. (There is information about this in the Akash Documents too.)
+https://akash.network/docs/getting-started/token-and-wallets/
+ 
 In my examples, I have added automatic backups to Filebase and used MCrcon to manage the server as well.
 
 ***
@@ -46,6 +44,7 @@ You can use my image by pulling moonbys/minecraft:master
 - Create your own Minecraft Docker Image or use one from the examples folder
 - Create your own deploy.yaml file or use one from the examples folder (change the Docker Image and settings to your needs)
 - Use your selected Akash deploy method to send your selected deploy.yaml
+- Or use the template from Akash Console - https://console.akash.network/templates/akash-network-awesome-akash-minecraft
 - Log in to your Minecraft server and have fun
 
 ***
@@ -53,5 +52,5 @@ You can use my image by pulling moonbys/minecraft:master
 ### Notes
 
 - All of the deploy.yaml files in the examples folder include RCON setup, so that you can interact with your server (You will need mcrcon https://github.com/Tiiffi/mcrcon) You can also delete the RCON lines and port, if you do not plan to use this. 
-- Some of the example servers include auto backups to Filebase.com
+- Some of the example servers include auto backups to Filebase.com, but you can use other S3 compatible external storage options as you wish.
 
